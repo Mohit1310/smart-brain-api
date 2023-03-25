@@ -11,7 +11,13 @@ const image = require('./controllers/image')
 
 const db = knex({
   client: 'pg',
-  connection: process.env.DATABASE_URL,
+  connection: {
+    host: 'dpg-cgd69te4dad6omiam9hg-a',
+    port: 5432,
+    user: 'face_detective_user',
+    password: '',
+    database: 'face_detective',
+  },
 });
 
 const port = process.env.PORT;
