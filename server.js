@@ -12,10 +12,12 @@ const image = require('./controllers/image')
 const db = knex({
   client: 'pg',
   connection: {
+    connectionString: 'postgres://face_detective_user:KK35drypRRQglkXV4S17SJ7pJvXfgK5Z@dpg-cgd69te4dad6omiam9hg-a/face_detective',
+    ssl: {rejectUnauthorized: false},
     host: 'dpg-cgd69te4dad6omiam9hg-a',
     port: 5432,
     user: 'face_detective_user',
-    password: '',
+    password: 'KK35drypRRQglkXV4S17SJ7pJvXfgK5Z',
     database: 'face_detective',
   },
 });
@@ -27,9 +29,7 @@ app.use(cors())
 
 app.get("/", (req, res) => { res.send('success'); });
 app.post("/signin", (signin.handleSignin(db, bcrypt)))
-app.post("/register", (req, res) => { 
-  res.send('success register');
-  register.handleRegister(req, res, db, bcrypt) });
+app.post("/register", (req, res) => { register.handleRegister(req, res, db, bcrypt) });
 app.get("/profile/:id", (req, res) => { profile.handleProfileGet(req, res, db) });
 app.put("/image", (req, res) => { image.handleImage(req, res, db) });
 app.post("/imageurl", (req, res) => { image.handleApiCall(req, res) })
